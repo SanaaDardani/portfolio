@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}AppBundle:Projects:index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {{ form_start(formProjects) }}
+    {{ form_row(formProjects.title) }}
+    {{ form_row(formProjects.description) }}
+    {{ form_row(formProjects.lien)}}
+    {{ form_row(formProjects.category) }}
+    <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+ {% endblock %}

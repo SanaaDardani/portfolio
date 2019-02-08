@@ -1,0 +1,149 @@
+{% extends "base.html.twig" %}
+
+{% block title %}AppBundle:PostsCategory:index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatable/css/datatables.min.css') }}">
+{% endblock %}
+
+{% block body %}
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+        Launch demo modal
+    </button>
+
+    <table id="myTable" class="display" border="1">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Categorie</th>
+            <th>...</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for el in postsCategory %}
+            <tr>
+                <td>{{ el.id }}</td>
+                <td>{{ el.name }}</td>
+                <td>
+                <button type="button" class="btn btn-primary" data-toggle="modal"
+                        data-target="#modalSupprimer" data-id="{{ el.id }}">
+                    supprimer
+                </button>
+                    <button type="button" class="btn btn-warning" data-toggle="modal"
+                            data-target="#modalModifier" data-id="{{ el.id }}" data-name="{{ el.name }}">
+                        Modifier
+                    </button>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
+    <!-- Modal Ajouter -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    {{ form_start(form) }}
+                    {{ form_row(form.name) }}
+                        <button type="submit"> enregistrer</button>
+                    {{ form_end(form) }}
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal supprimer -->
+    <div class="modal fade" id="modalSupprimer" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="{{ url('postsCategory_delete') }}">
+                <div class="modal-body">
+                    <input type="hidden" name="id">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary"> enregistrer</button>
+                </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal modifier -->
+    <div class="modal fade" id="modalModifier" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <form method="post" action="{{ url('postsCategory_update') }}">
+                    <div class="modal-body">
+                        <input type="hidden" name="id">
+                        <input type="text" name="name">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary"> enregistrer</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/plugins/datatable/js/datatables.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#myTable').DataTable();
+        });
+    </script>
+        <script>
+            $('#modalSupprimer').on('show.bs.modal', function (event) {
+                let button = $(event.relatedTarget)
+                let id = button.data('id')
+
+                let modal = $(this)
+
+                modal.find('input[name="id"]').val(id)
+            })
+        </script>
+    <script>
+        $('#modalModifier').on('show.bs.modal', function (event) {
+            let button = $(event.relatedTarget)
+            let id = button.data('id')
+            let name = button.data('name')
+            let modal = $(this)
+
+            modal.find('input[name="id"]').val(id),
+                modal.find('input[name="name"]').val(name)
+        })
+    </script>
+{% endblock %}

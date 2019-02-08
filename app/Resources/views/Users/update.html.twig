@@ -1,0 +1,21 @@
+{% extends "base.html.twig" %}
+
+{% block title %}AppBundle:Author:index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset( 'assets/plugins/datatable/css/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}">
+{% endblock %}
+{% block body %}
+    {{ form_start(formUser) }}
+    {{ form_row(formUser.username) }}
+    {{ form_row(formUser.email) }}
+    {{ form_row(formUser.roles) }}
+    <button type="submit" class="btn btn-primary">Modifier</button>
+    </form>
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+ {% endblock %}

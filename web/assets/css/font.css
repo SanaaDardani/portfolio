@@ -1,0 +1,22 @@
+@font-face {
+    font-family: 'playfair display';
+    src: url('../fonts/playfair-display/PlayfairDisplay-Black.otf');
+}
+
+@font-face {
+    font-family: 'poppins light';
+    src: url('../fonts/poppins/Poppins-Light.otf');
+}
+@font-face {
+    font-family: 'poppins';
+    src: url('../fonts/poppins/Poppins-Medium.otf');
+}
+@font-face {
+    font-family: 'playfair display bold';
+    src: url('../fonts/playfair-display/PlayfairDisplay-Bold.otf');
+}
+@font-face {
+
+    font-family: 'poppins semibold';
+    src: url('../fonts/poppins/Poppins-SemiBold.otf');
+}

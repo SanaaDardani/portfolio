@@ -1,0 +1,28 @@
+{% extends "base.html.twig" %}
+
+{% block title %}AppBundle:Posts:index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset( 'assets/plugins/datatable/css/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}">
+{% endblock %}
+
+{% block body %}
+    <h1>Voulez Vous Supprimer !! {{  post.title }}</h1>
+    <a href="{{ url('posts_delete_confirmation', {id: post.id}) }}" class="btn btn-danger">supprimer</a>
+    <a href="{{ url('posts_index') }}" class="btn btn-outline-dark">Annuler</a>
+
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+     <script src="{{ asset( 'assets/plugins/datatable/js/datatables.min.js') }}"></script>
+     <script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap4.min.js') }}"></script>
+
+     <script>
+         $(document).ready(function () {
+             $('#tab-posts').DataTable();
+         });
+     </script>
+ {% endblock %}

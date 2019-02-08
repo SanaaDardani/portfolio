@@ -1,0 +1,18 @@
+{% extends "base.html.twig" %}
+
+{% block title %}AppBundle:Projects:index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    <h1>Voulez Vous Supprimer !! {{  projects.title }}</h1>
+    <a href="{{ url('projects_delete_confirmation', {id: projects.id}) }}" class="btn btn-danger">supprimer</a>
+    <a href="{{ url('projects_index') }}" class="btn btn-outline-dark">Annuler</a>
+
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+ {% endblock %}

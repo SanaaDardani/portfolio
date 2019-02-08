@@ -1,0 +1,38 @@
+{% extends "base.html.twig" %}
+
+{% block title %}AppBundle:Author:index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link href="{{ asset( 'assets/plugins/datatable/css/datatables.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}">
+
+{% endblock %}
+
+{% block body %}
+    {{ form_start(formPosts) }}
+    {{ form_row(formPosts.title) }}
+    {{ form_row(formPosts.description) }}
+    {{ form_row(formPosts.file) }}
+    {{ form_row(formPosts.category) }}
+    <button type="submit" class="btn btn-primary">Ajouter</button>
+    </form>
+{% endblock %}
+
+ {% block javascripts %}
+     {{ parent() }}
+     <script src="{{ asset( 'assets/plugins/datatable/js/datatables.min.js') }}"></script>
+     <script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap4.min.js') }}"></script>
+    {# <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=your_API_key"></script>
+
+     <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
+     <script>tinymce.init({ selector:'textarea' });</script>#}
+
+
+     <script>
+         $(document).ready(function () {
+             $('#tab-posts').DataTable();
+         });
+
+     </script>
+ {% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html.twig" %}
+
+{% block title %}AppBundle:Posts:index{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link  rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+{% endblock %}
+
+
+{% block body %}
+    <a href="{{ url('posts_create')}}" class="btn btn-outline-success">Ajouter</a>
+<table id="example" class="mdl-data-table" style="width:100%">
+    <thead>
+    <tr>
+        <th>#</th>
+        <th>Title</th>
+        <th>Description</th>
+        <th>File</th>
+        <th>Date-Publication</th>
+        <th>Category</th>
+        <th>...</th>
+    </tr>
+    </thead>
+    <tbody>
+
+    {% for post in posts %}
+    <tr>
+        <td>{{ post.id }}</td>
+        <td>{{ post.title }}</td>
+        <td>{{ post.description }}</td>
+        <td> <img class="img-fluid" src="{{ asset('assets/images/imagesPosts/')~ post.file }}"> </td>
+        <td>{{ post.createdAt|date('d/m/Y') }}</td>
+        <td>
+            {% if post.category %}
+                {{ post.category.name }}
+            {% else %}
+                non classé
+            {% endif %}
+
+        </td>
+        <td>
+            <a href="{{ url('posts_delete', {id: post.id}) }}" class="btn btn-outline-danger">Supprimer</a>
+            <a href="{{ url('posts_update',{id: post.id}) }}" class="btn btn-outline-warning">Modifier</a>
+        </td>
+    </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+
+    {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+
+    <script>
+        $(document).ready( function () {
+            $('#example').DataTable();
+        } );
+    </script>
+{% endblock %}
