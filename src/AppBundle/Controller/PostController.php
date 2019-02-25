@@ -83,6 +83,7 @@ class PostController extends Controller
      */
     public function deleteConfirmation(Posts $posts)
     {
+        unlink ( $this->getParameter("post_images_directory").'/'.$posts->getFile() );
         $em = $this->getDoctrine()->getManager();
         $em->remove($posts);
         $em->flush();
@@ -96,12 +97,26 @@ class PostController extends Controller
      */
     public function update(Posts $posts, Request $request)
     {
-
-
         $em = $this->getDoctrine()->getManager();
+        $oldFile = $posts->getFile();
         $formPosts = $this->createForm(PostsType::class, $posts);
         $formPosts->handleRequest($request);
         if ($formPosts->isSubmitted()) {
+            unlink ( $this->getParameter("post_images_directory").'/'.$oldFile );
+            $file = $posts->getFile();
+            $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
+
+            try {
+                $file->move(
+                    $this->getParameter('post_images_directory'),
+                    $fileName
+                );
+            }
+            catch (FileException $e) {
+                throw new FileException();
+            }
+            $posts->setFile($fileName);
+
             $em->persist($posts);
             $em->flush();
             return $this->redirectToRoute('posts_index');
