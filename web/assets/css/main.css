@@ -1,3 +1,11 @@
+/* image */
+img.img-resp {
+  max-width: 100px;
+  height: auto;
+}
+
+
+
 #video-background {
   /*  making the video fullscreen  */
   position: fixed;

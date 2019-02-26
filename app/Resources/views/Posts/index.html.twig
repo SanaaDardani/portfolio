@@ -5,6 +5,7 @@
 {% block stylesheets %}
     {{ parent() }}
     <link  rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
 {% endblock %}
 
 
@@ -29,7 +30,7 @@
         <td>{{ post.id }}</td>
         <td>{{ post.title }}</td>
         <td>{{ post.description }}</td>
-        <td> <img class="img-fluid" src="{{ asset('assets/images/imagesPosts/')~ post.file }}"> </td>
+        <td> <img class="img-resp" src="{{ asset('assets/images/imagesPosts/')~ post.file }}"> </td>
         <td>{{ post.createdAt|date('d/m/Y') }}</td>
         <td>
             {% if post.category %}
