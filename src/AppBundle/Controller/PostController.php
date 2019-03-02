@@ -102,7 +102,9 @@ class PostController extends Controller
         $formPosts = $this->createForm(PostsType::class, $posts);
         $formPosts->handleRequest($request);
         if ($formPosts->isSubmitted()) {
-            unlink ( $this->getParameter("post_images_directory").'/'.$oldFile );
+            if (file_exists($this->getParameter("post_images_directory") . '/' . $oldFile)) {
+                unlink($this->getParameter("post_images_directory") . '/' . $oldFile);
+            }
             $file = $posts->getFile();
             $fileName = $this->generateUniqueFileName().'.'.$file->guessExtension();
 

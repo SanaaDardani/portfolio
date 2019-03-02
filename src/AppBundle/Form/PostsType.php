@@ -19,11 +19,15 @@ class PostsType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title')
-            ->add('description',TextareaType::class)
+            ->add('description',TextareaType::class,[
+                'attr' => [
+                    'id' => 'froala-editor',
+                ]
+            ])
             ->add('createdAt')
             ->add('file', FileType::class, [
                 'data_class' => null,
-                'label' => 'Brochure (PDF file)'
+                    //'label' => 'Brochure (PDF file)',
                 ]
             )
             ->add('category',EntityType::class,[

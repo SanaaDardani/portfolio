@@ -6,6 +6,10 @@
     {{ parent() }}
     <link href="{{ asset( 'assets/plugins/datatable/css/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.3/css/froala_editor.pkgd.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.jsdelivr.net/npm/froala-editor@2.9.3/css/froala_style.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/styleFileImage.css') }}" rel="stylesheet" type="text/css">
 
 {% endblock %}
 
@@ -13,7 +17,17 @@
     {{ form_start(formPosts) }}
     {{ form_row(formPosts.title) }}
     {{ form_row(formPosts.description) }}
+      <div class="alert"></div>
+    <div id='img_contain'>
+        <img id="blah" align='middle'
+             src="http://www.clker.com/cliparts/c/W/h/n/P/W/generic-image-file-icon-hi.png" alt="your image"
+             title=''/>
+    </div>
+    <div class="input-group">
+    <div class="custom-file">
     {{ form_row(formPosts.file) }}
+    </div>
+    </div>
     {{ form_row(formPosts.category) }}
     <button type="submit" class="btn btn-primary">Ajouter</button>
     </form>
@@ -22,7 +36,8 @@
  {% block javascripts %}
      {{ parent() }}
      <script src="{{ asset( 'assets/plugins/datatable/js/datatables.min.js') }}"></script>
-     <script src="{{ asset('assets/plugins/datatable/js/dataTables.bootstrap4.min.js') }}"></script>
+     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/froala-editor@2.9.3/js/froala_editor.pkgd.min.js"></script>
+     <script src="{{ asset('assets/js/function.js') }}"></script>
     {# <script src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=your_API_key"></script>
 
      <script src="https://cloud.tinymce.com/5/tinymce.min.js"></script>
@@ -32,7 +47,7 @@
      <script>
          $(document).ready(function () {
              $('#tab-posts').DataTable();
+             $('#appbundle_posts_description').froalaEditor()
          });
-
      </script>
  {% endblock %}

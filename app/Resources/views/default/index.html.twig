@@ -1,238 +1,82 @@
-{% extends 'baseClient.html.twig' %}
+{% extends "baseClient.html.twig" %}
+{% block title %}Hello{% endblock %}
 
 {% block stylesheets %}
-    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    <!--bootsrap -->
-    <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
-    <!--fullpage -->
-    <link rel="stylesheet" href="{{ asset('assets/css/jquery.fullPage.css')  }}" />
-    <!-- custom css-->
-    <link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">
-    <!-- fullpage -->
-    <link rel="stylesheet" href="{{ asset('assets/css/fullPage.css') }}">
-    <!-- typewriter -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/typewriter/typewriter.css') }}">
-    <!-- owlCarousel -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/owlCarousel/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/plugins/owlCarousel/owl.theme.default.min.css') }}">
-    <!-- popup -->
-    <link rel="stylesheet" href="{{ asset('assets/plugins/popup/magnific-popup.css') }}">
-    <!-- font -->
-    <link rel="stylesheet" href="{{ asset('assets/css/font.css ')}}">
-    <!-- font awesome5 -->
-    <link rel="stylesheet" href="{{ asset('assets/css/fontawesome-all.css') }}">
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/plugins/slickCaroussel/slickC/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/slickCaroussel/slickC/slick-theme.css') }}">
+
 {% endblock %}
 
-
 {% block body %}
-    <ul id="menu">
-        <li data-menuanchor="firstPage" class="active"><a href="#firstPage">First slide</a></li>
-        <li data-menuanchor="secondPage"><a href="#secondPage">Second slide</a></li>
-        <li data-menuanchor="3rdPage"><a href="#3rdPage">Third slide</a></li>
-        <li data-menuanchor="4rdPage"><a href="#4rdPage">Fourth slide</a></li>
-        <li data-menuanchor="5rdPage"><a href="#5rdPage">Fifth slide</a></li>
-    </ul>
-    <div id="fullpage">
-        <div class="my-info">
-            <span>+212 609505306</span><br>
-            <span>sanaa.dardani@gmail.com</span>
-        </div>
-        <div class="my-network">
-            <span><i class="neo fab fa-linkedin"></i></span>
-            <br><br>
-            <span ><i class="neo fab fa-facebook-f"></i></span>
-        </div>
-        <div class="availability">
-            <span><i class="neo fas fa-circle"></i> &nbsp;&nbsp;Disponible pour un projet en freelance</span>
-        </div>
-
-        <div class="section" id="section0">
-            <video autoplay="autoplay" loop="true" id="video-background" muted plays-inline>
-                <source src="{{ asset('assets/video/video.mp4') }}" type="video/mp4">
-            </video>
-            <div class="intro output" id="output">
-                <h1 class="cursor neo"></h1>
-                <h2></h2>
-            </div>
-        </div>
-
-        <div class="section" id="section1">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 propos">
-                        <h2>A Propos de Moi</h2>
-                        <h3>Smart design is a simplest way to your sucess.</h3>
-                        <p>We make perfect design for creative studio. If several languages coal then turned to look out the window
-                            at the dull weather. One day however a small line of blind text by the name of Lorem Ipsum
-                            decided to leave for the far World of Grammar.
-                        </p>
-                        <span><a href="" class="btn btn-outline-light contactez">Contactez Moi</a></span>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="parent">
-                            <img class="image2" src="assets/images/sanaa-dardani.jpg" />
-                            <div class="gradient hidden-xs-down"></div>
-                        </div>
-                    </div>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+        {% for post in posts %}
+            <div class="carousel-item
+            {% if loop.first %}
+                active
+            {% endif %}
+            ">
+                <img class="d-block w-100" src="{{ asset('assets/images/imagesPosts/')~ post.file }}">
+                <div class="carousel-caption d-none d-md-block">
+                    <h5>{{ post.title }}</h5>
+                    <p>{{ post.createdAt | date('d/m/Y') }}</p>
                 </div>
             </div>
+        {% endfor %}
         </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
 
-        <div class="section" id="section2">
-            <h2>More 20+ Project's</h2>
-            <div class="owl-carousel">
-                <div class="pg-carousel">
-                    <a class="image-link" href="assets/images/carousel.jpg" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, dicta!">
-                        <img src="assets/images/carousel.jpg" alt="carousel">
-                    </a>
-                </div>
-                <div class="pg-carousel">
-                    <a class="image-link" href="assets/images/carousel2.jpg" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, dicta!">
-                        <img src="assets/images/carousel2.jpg" alt="carousel">
-                    </a>
-                </div>
-                <div class="pg-carousel">
-                    <a class="image-link" href="assets/images/carousel3.jpg" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, dicta!">
-                        <img src="assets/images/carousel3.jpg" alt="carousel">
-                    </a>
-                </div>
-                <div class="pg-carousel">
-                    <a class="image-link" href="assets/images/carousel4.jpg" title="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut, dicta!">
-                        <img src="assets/images/carousel4.jpg" alt="carousel">
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <div class="section" id="section3">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <h2>Wide range of service’s</h2>
-                        <h3>Smart design is a simplest way to your sucess.  We make perfect copy</h3>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, aliquam aperiam aut commodi Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci, aliquam aperiam aut commodi cum, distinctio eligendi ex exercitationem, iste itaque minima nesciunt nihil qui repudiandae soluta tempora voluptates? Laboriosam, quia?</p>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="wrapper">
-                            <section class="details-group">
-                                <details class="details" open>
-                                    <summary class="details__summary">
-                                        &lt;details&gt; and &lt;summary&gt;
-                                    </summary>
-                                    <div class="details__content">
-                                        <p>The &lt;details&gt; and &lt;summary&gt; elements are used to allow common accordion-style functionality without relying on JavaScript.</p>
-                                    </div>
-                                </details>
-
-                                <details class="details">
-                                    <summary class="details__summary">Making it better</summary>
-                                    <div class="details__content">
-                                        <p>With a little help from JavaScript, we can supplement the default behavior to make an accordion that is super smooth and nicely-styled, but still degrades gracefully.</p>
-                                        <p>This accordion uses JS to calculate heights so we can use CSS transitions without any max-height hacks. It also sets a timeout before removing the <code>open</code> attribute, so the content of the <code>&lt;details&gt;</code> element will stay visible until the height transition is finished.</p>
-                                        <p>The cool part is that since we&rsquo;re using these modern HTML5 elements, the accordion should work just fine even with JavaScript disabled. <strong><em>Gasp!</em> A simple web component in 2018 that doesn&rsquo;t completely fail without JS?! Sound the alarm!</strong>
-                                    </div>
-                                </details>
-
-                                <details class="details">
-                                    <summary class="details__summary">Settings</summary>
-                                    <div class="details__content">
-                                        <ul>
-                                            <li>
-                                                <strong><code>speed</code></strong> <em>(default: <code>300</code>)</em> Speed of the transition in milliseconds. Setting this in the plugin will override the value specified in the CSS.
-                                            </li>
-                                            <li>
-                                                <strong><code>one_visible</code></strong> <em>(default: <code>false</code>)</em> Determines whether details can be toggled independently, or if only one can be visible at a time.
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </details>
-
-                                <details class="details">
-                                    <summary class="details__summary">Shameless Plug</summary>
-                                    <div class="details__content">
-                                        <p>If you liked this pen, check out <a target="_blank" href="https://keithpickering.github.io">my portfolio site</a>. I&rsquo;m accepting new projects all the time, so drop me a line.</p>
-                                    </div>
-                                </details>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <div class="section" id="section4">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 titre-contact">
-                        <h2>Contact</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-                        <div class="group">
-                            <input type="text"class="inp1" required>
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label> your Name</label>
-                        </div>
-                        <div class="group">
-                            <input type="text" class="inp1" required>
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label>your Email</label>
-                        </div>
-                        <div class="group contact">
-                            <input type="text" class="inp1" required>
-                            <span class="highlight"></span>
-                            <span class="bar"></span>
-                            <label>Message</label>
-                        </div>
-                        <span><a href="" class="btn btn-outline-light contactez">Envoyer Un Message</a></span>
-                    </div>
-                    <div class="col-md-6 img-contact">
-                        <img  class="image-contact" src="{{ asset('assets/images/img.png') }}">
-                    </div>
-
-                </div>
-            </div>
-
-
-        </div>
     </div>
+    {% for category in categories %}
+        <div class="card m-2">
+            <div class="card-title">
+                <h2>{{ category.name }}</h2>
+            </div>
+            <div class="card-body">
+                <!-- carousel -->
+                <div class="stick-slide">
+                    {% for post in category.posts %}
+                        <div>
+                            <img src="{{ asset('assets/images/imagesPosts/')~ post.file }}" class="p-1 img-fluid">
+                            <h5>{{ post.title }}</h5>
+                            <p>{{ post.createdAt | date('d/m/Y') }}</p>
+                        </div>
+
+
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+
+
 {% endblock %}
 
 {% block javascripts %}
-    <!-- jquery  -->
-    <script src="{{ asset('assets/js/jquery-3.3.1.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/owlCarousel/owl.carousel.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/popup/jquery.magnific-popup.js') }}"></script>
-    <script src="{{ asset('assets/js/carousel.js') }}"></script>
-    <script src="{{ asset('assets/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('assets/js/function.js') }}"></script>
-    <script src="{{ asset('assets/js/scrolloverflow.js') }}"></script>
-    <script src="{{ asset('assets/js/jquery.fullPage.js') }}"></script>
-    <script src="{{ asset('assets/js/fullPage.js') }}"></script>
-    <script src="{{ asset('assets/plugins/typewriter/typewriter.js') }}"></script>
-
-
-
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#fullpage').fullpage({
-                anchors: ['firstPage', 'secondPage', '3rdPage','4rdPage','5rdPage'],
-                navigation: true,
-                navigationPosition: 'right',
-                navigationTooltips: ['First page', 'Second page', 'Third and last page'],
-                menu: '#menu',
-                afterRender: function () {
-                    //playing the video
-                    $('video').get(0).play();
-                }
-            });
-        });
-    </script>
+   {{ parent() }}
+    <script src="{{ asset('assets/plugins/slickCaroussel/slickC/slick.js') }}"></script>
     <script>
         $(document).ready(function() {
-            $('.image-link').magnificPopup({type:'image'});
+            $('.stick-slide').slick({
+                slidesToShow: 3,
+                slidesToScroll: 1,
+                autoplay: false,
+                autoplaySpeed: 2000
+            });
         });
-
     </script>
 {% endblock %}

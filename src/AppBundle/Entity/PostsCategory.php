@@ -29,6 +29,11 @@ class PostsCategory
     private $name;
 
     /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Posts", mappedBy="category")
+     */
+    private $posts;
+
+    /**
      * Get id
      *
      * @return int
@@ -74,4 +79,47 @@ class PostsCategory
         // return $this->id;
     }
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->posts = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add post.
+     *
+     * @param \AppBundle\Entity\Posts $post
+     *
+     * @return PostsCategory
+     */
+    public function addPost(\AppBundle\Entity\Posts $post)
+    {
+        $this->posts[] = $post;
+
+        return $this;
+    }
+
+    /**
+     * Remove post.
+     *
+     * @param \AppBundle\Entity\Posts $post
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePost(\AppBundle\Entity\Posts $post)
+    {
+        return $this->posts->removeElement($post);
+    }
+
+    /**
+     * Get posts.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPosts()
+    {
+        return $this->posts;
+    }
 }

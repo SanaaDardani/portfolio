@@ -52,7 +52,7 @@ class Posts
     private $file;
 
     /**
-     * @ORM\ManyToOne(targetEntity="PostsCategory", inversedBy="Posts")
+     * @ORM\ManyToOne(targetEntity="PostsCategory", inversedBy="posts")
      * @ORM\JoinColumn(name="post_category_id", referencedColumnName="id")
      */
 

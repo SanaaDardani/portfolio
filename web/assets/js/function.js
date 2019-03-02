@@ -1,3 +1,8 @@
+
+/* carousel */
+
+
+
 class Details {
     constructor(el, settings = {}) {
         this.group    = el;
@@ -105,3 +110,46 @@ class Details {
         details.init();
     }
 })();
+
+(function() {
+    /*
+    ...customise bootstrap carousel
+    ...change bootstrap carousel interval
+    */
+    $('#carousel-item').carousel({
+        interval: 4000
+    });
+}());
+
+/* upload image */
+$("#appbundle_posts_file").change(function(event) {
+    RecurFadeIn();
+    readURL(this);
+});
+$("#appbundle_posts_file").on('click',function(event){
+    RecurFadeIn();
+});
+function readURL(input) {
+    if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        var filename = $("#appbundle_posts_file").val();
+        filename = filename.substring(filename.lastIndexOf('\\')+1);
+        reader.onload = function(e) {
+            debugger;
+            $('#blah').attr('src', e.target.result);
+            $('#blah').hide();
+            $('#blah').fadeIn(500);
+            $('.custom-file-label').text(filename);
+        }
+        reader.readAsDataURL(input.files[0]);
+    }
+    $(".alert").removeClass("loading").hide();
+}
+function RecurFadeIn(){
+    console.log('ran');
+    FadeInAlert("Wait for it...");
+}
+function FadeInAlert(text){
+    $(".alert").show();
+    $(".alert").text(text).addClass("loading");
+}

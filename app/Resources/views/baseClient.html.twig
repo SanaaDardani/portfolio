@@ -1,18 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-8"/>
     <title>{% block title %}Welcome!{% endblock %}</title>
-    {% block stylesheets %}{% endblock %}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.min.css') }}">
+        {#<link rel="stylesheet" href="{{ asset('assets/css/main.css') }}">#}
+    {% endblock %}
 
 </head>
 <body>
 <!--menu -->
 
-{% block body %}{% endblock %}
+{% include 'menuClient.html.twig' %}
 
+
+<div class="container-fluid">
+    {% block body %}
+    {% endblock %}
+</div>
 
 {% block javascripts %}
+    <script src="{{ asset('assets/js/jquery.js') }}"></script>
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('assets/js/function.js') }}"></script>
 {% endblock %}
 </body>
 </html>
